@@ -1,1 +1,29 @@
-"[]"
+[
+    {
+    "id":"8c34fafd-5380-4107-bfd4-5b6eedd3759c",
+    "title":"leche",
+    "description":"leche",
+    "price":3,
+    "thumbnail":"url",
+    "code":"leche",
+    "stock":6
+},
+{
+    "id":"8c34fafd-5380-4107-bfd4-5b6eedd3769c",
+    "title":"pan",
+    "description":"leche",
+    "price":3,
+    "thumbnail":"url",
+    "code":"leche",
+    "stock":6
+},
+{
+    "id":"8c34fafd-5380-4107-bfd4-5b6eedd3779c",
+    "title":"azucar",
+    "description":"leche",
+    "price":3,
+    "thumbnail":"url",
+    "code":"leche",
+    "stock":6
+}
+]

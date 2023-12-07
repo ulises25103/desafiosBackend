@@ -10,52 +10,42 @@ const PORT = 8080;
 const productManager = new ProductManager ("products.json");
 
 
-let products = [
-    {
-        name: "Escuadra",
-        price: 123.45,
-        id: 1
-    },
-    {
-        name: "Calculadora",
-        price: 234.56,
-        id: 2
-    },
-    {
-        name: "Globo Terraqueo",
-        price: 345.67,
-        id: 3
-    },
-    {
-        name: "Destornillador",
-        price: 456.78,
-        id: 4
-    },
-    {
-        name: "Escuadra",
-        price: 567.89,
-        id: 5
-    }
-]
-
 
 app.get("/", (req, res) => {
     res.send("Hello World!")
 })
 
 
-app.get("/products", (req, res) => {
-    let temporalProducts = products;
+app.get("/products", async (req, res) => {
     const { limit } = req.query;
-    if (limit) {
-        temporalProducts = temporalProducts.slice(0, +limit); 
+    try {
+      let response = await productManager.getProducts();
+      if (limit) {
+        let tempArray = response.filter((dat, index) => index < limit);
+        res.json({ data: tempArray, limit: limit, quantity: tempArray.length });
+      } else {
+        res.json({ data: response, limit: false, quantity: response.length });
+      }
+    } catch (err) {
+      console.log(err);
     }
+  });
 
-    res.json({
-        msg:"Lista de productos",
-        data: temporalProducts
-    });
-})
+
+
+  app.get("/products/:pid", async (req, res) => {
+    const { pid } = req.params;
+  
+    let product = await productManager.getProductById(parseInt(pid));
+  
+    if (product) {
+      res.json({ message: "success", data: product });
+    } else {
+      res.json({
+        message: "el producto solicitado no existe",
+      });
+    }
+  });
 
 app.listen(PORT, () => {
     console.log(`Server running on port http://localhost:${PORT}`)
