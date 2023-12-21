@@ -1,0 +1,16 @@
+<div>
+    {{#each products}}
+    <div class="cardProduct" >
+        <div class="cardProduct__image" >
+            <img src="{{this.thumbnail}}" alt="{{this.name}}">
+        </div>
+        <div  class="cardProduct__info">
+            <h3>{{this.name}}</h3>
+            <p>{{this.price}}</p>
+            <p>{{this.description}}</p>
+            <p>{{this.stock}}</p>
+            <p>{{this.code}}</p>
+        </div>
+    </div>
+    {{/each}}
+</div>
